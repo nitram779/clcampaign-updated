@@ -60,6 +60,43 @@ public:
 	bool m_fRegisteredSound; // whether or not this grenade has issued its DANGER sound to the world sound list yet.
 };
 
+class CGrenadeRock : public CBaseMonster
+{
+public:
+	void Spawn() override;
+
+	typedef enum
+	{
+		SATCHEL_DETONATE = 0,
+		SATCHEL_RELEASE
+	} SATCHELCODE;
+
+	static CGrenade* ShootTimed(entvars_t* pevOwner, Vector vecStart, Vector vecVelocity);
+
+	void EXPORT BounceTouch(CBaseEntity* pOther);
+
+	virtual void BounceSound();
+
+	bool m_fRegisteredSound; // whether or not this grenade has issued its DANGER sound to the world sound list yet.
+};
+
+class CGrenadeFedora : public CBaseMonster
+{
+public:
+	void Spawn() override;
+
+	typedef enum
+	{
+		SATCHEL_DETONATE = 0,
+		SATCHEL_RELEASE
+	} SATCHELCODE;
+
+	static CGrenade* ShootTimed(entvars_t* pevOwner, Vector vecStart, Vector vecVelocity);
+
+	void EXPORT BounceTouch(CBaseEntity* pOther);
+
+	bool m_fRegisteredSound; // whether or not this grenade has issued its DANGER sound to the world sound list yet.
+};
 
 // constant items
 #define ITEM_HEALTHKIT 1
@@ -67,7 +104,7 @@ public:
 #define ITEM_SECURITY 3
 #define ITEM_BATTERY 4
 
-#define MAX_NORMAL_BATTERY 100
+#define MAX_NORMAL_BATTERY 300
 
 
 // weapon weight factors (for auto-switching)   (-1 = noswitch)
@@ -88,18 +125,19 @@ public:
 
 
 // weapon clip/carry ammo capacities
-#define URANIUM_MAX_CARRY 100
-#define _9MM_MAX_CARRY 250
+#define URANIUM_MAX_CARRY 1000
+#define _9MM_MAX_CARRY 999
 #define _357_MAX_CARRY 36
-#define BUCKSHOT_MAX_CARRY 125
+#define BUCKSHOT_MAX_CARRY 200
 #define BOLT_MAX_CARRY 50
-#define ROCKET_MAX_CARRY 5
-#define HANDGRENADE_MAX_CARRY 10
+#define ROCKET_MAX_CARRY 125
+#define HANDGRENADE_MAX_CARRY 60
 #define SATCHEL_MAX_CARRY 5
 #define TRIPMINE_MAX_CARRY 5
 #define SNARK_MAX_CARRY 15
 #define HORNET_MAX_CARRY 8
-#define M203_GRENADE_MAX_CARRY 10
+#define M203_GRENADE_MAX_CARRY 1000
+#define SNIPARS_MAX_CARRY 100
 
 // the maximum amount of ammo each weapon's clip can hold
 #define WEAPON_NOCLIP -1
@@ -107,11 +145,11 @@ public:
 //#define CROWBAR_MAX_CLIP		WEAPON_NOCLIP
 #define GLOCK_MAX_CLIP 17
 #define PYTHON_MAX_CLIP 6
-#define MP5_MAX_CLIP 50
-#define MP5_DEFAULT_AMMO 25
+#define MP5_MAX_CLIP 999
+#define MP5_DEFAULT_AMMO 999
 #define SHOTGUN_MAX_CLIP 8
-#define CROSSBOW_MAX_CLIP 5
-#define RPG_MAX_CLIP 1
+#define CROSSBOW_MAX_CLIP 50
+#define RPG_MAX_CLIP WEAPON_NOCLIP
 #define GAUSS_MAX_CLIP WEAPON_NOCLIP
 #define EGON_MAX_CLIP WEAPON_NOCLIP
 #define HORNETGUN_MAX_CLIP WEAPON_NOCLIP
@@ -119,37 +157,43 @@ public:
 #define SATCHEL_MAX_CLIP WEAPON_NOCLIP
 #define TRIPMINE_MAX_CLIP WEAPON_NOCLIP
 #define SNARK_MAX_CLIP WEAPON_NOCLIP
+#define SAWNOFF_MAX_CLIP 4
+#define SNIPARS_MAX_CLIP 10
 
 
 // the default amount of ammo that comes with each gun when it spawns
 #define GLOCK_DEFAULT_GIVE 17
 #define PYTHON_DEFAULT_GIVE 6
-#define MP5_DEFAULT_GIVE 25
-#define MP5_DEFAULT_AMMO 25
-#define MP5_M203_DEFAULT_GIVE 0
+#define MP5_DEFAULT_GIVE 999
+#define MP5_DEFAULT_AMMO 999
+#define MP5_M203_DEFAULT_GIVE 1000
 #define SHOTGUN_DEFAULT_GIVE 12
-#define CROSSBOW_DEFAULT_GIVE 5
-#define RPG_DEFAULT_GIVE 1
-#define GAUSS_DEFAULT_GIVE 20
-#define EGON_DEFAULT_GIVE 20
-#define HANDGRENADE_DEFAULT_GIVE 5
+#define CROSSBOW_DEFAULT_GIVE 50
+#define RPG_DEFAULT_GIVE 25
+#define GAUSS_DEFAULT_GIVE 1000
+#define EGON_DEFAULT_GIVE 1000
+#define HANDGRENADE_DEFAULT_GIVE 12
 #define SATCHEL_DEFAULT_GIVE 1
 #define TRIPMINE_DEFAULT_GIVE 1
 #define SNARK_DEFAULT_GIVE 5
 #define HIVEHAND_DEFAULT_GIVE 8
+#define SAWNOFF_DEFAULT_GIVE 4
+#define PEPSIGUN_DEFAULT_GIVE 8
+#define SNIPARS_DEFAULT_GIVE 10
 
 // The amount of ammo given to a player by an ammo item.
-#define AMMO_URANIUMBOX_GIVE 20
+#define AMMO_URANIUMBOX_GIVE 1000
 #define AMMO_GLOCKCLIP_GIVE GLOCK_MAX_CLIP
 #define AMMO_357BOX_GIVE PYTHON_MAX_CLIP
 #define AMMO_MP5CLIP_GIVE MP5_MAX_CLIP
 #define AMMO_CHAINBOX_GIVE 200
-#define AMMO_M203BOX_GIVE 2
+#define AMMO_M203BOX_GIVE 999
 #define AMMO_BUCKSHOTBOX_GIVE 12
 #define AMMO_CROSSBOWCLIP_GIVE CROSSBOW_MAX_CLIP
 #define AMMO_RPGCLIP_GIVE RPG_MAX_CLIP
-#define AMMO_URANIUMBOX_GIVE 20
+#define AMMO_URANIUMBOX_GIVE 1000
 #define AMMO_SNARKBOX_GIVE 5
+#define AMMO_SNIPARSBOX_GIVE SNIPARS_MAX_CLIP
 
 // bullet types
 typedef enum
@@ -160,10 +204,13 @@ typedef enum
 	BULLET_PLAYER_357,		// python
 	BULLET_PLAYER_BUCKSHOT, // shotgun
 	BULLET_PLAYER_CROWBAR,	// crowbar swipe
+	BULLET_PLAYER_SAWNOFF,	// sawnoff
+	BULLET_PLAYER_SNIPARS,	// snipars
 
 	BULLET_MONSTER_9MM,
 	BULLET_MONSTER_MP5,
 	BULLET_MONSTER_12MM,
+	BULLET_MONSTER_BUCKSHOT,
 } Bullet;
 
 
@@ -477,16 +524,11 @@ void LoadVModel(const char* szViewModel, CBasePlayer* m_pPlayer);
 
 enum glock_e
 {
-	GLOCK_IDLE1 = 0,
-	GLOCK_IDLE2,
-	GLOCK_IDLE3,
-	GLOCK_SHOOT,
-	GLOCK_SHOOT_EMPTY,
-	GLOCK_RELOAD,
-	GLOCK_RELOAD_NOT_EMPTY,
+	GLOCK_RELOAD = 0,
 	GLOCK_DRAW,
-	GLOCK_HOLSTER,
-	GLOCK_ADD_SILENCER
+	GLOCK_IDLE,
+	GLOCK_SHOOT,
+	GLOCK_HOLSTER
 };
 
 class CGlock : public CBasePlayerWeapon
@@ -531,7 +573,8 @@ enum crowbar_e
 	CROWBAR_ATTACK2MISS,
 	CROWBAR_ATTACK2HIT,
 	CROWBAR_ATTACK3MISS,
-	CROWBAR_ATTACK3HIT
+	CROWBAR_ATTACK3HIT,
+	CROWBAR_TAUNT
 };
 
 class CCrowbar : public CBasePlayerWeapon
@@ -545,6 +588,7 @@ public:
 	bool GetItemInfo(ItemInfo* p) override;
 
 	void PrimaryAttack() override;
+	void SecondaryAttack() override;
 	bool Swing(bool fFirst);
 	bool Deploy() override;
 	void Holster() override;
@@ -567,13 +611,9 @@ private:
 enum python_e
 {
 	PYTHON_IDLE1 = 0,
-	PYTHON_FIDGET,
-	PYTHON_FIRE1,
-	PYTHON_RELOAD,
-	PYTHON_HOLSTER,
 	PYTHON_DRAW,
-	PYTHON_IDLE2,
-	PYTHON_IDLE3
+	PYTHON_FIRE1,
+	PYTHON_RELOAD
 };
 
 class CPython : public CBasePlayerWeapon
@@ -765,6 +805,7 @@ enum rpg_e
 	RPG_FIDGET,
 	RPG_RELOAD,	   // to reload
 	RPG_FIRE2,	   // to empty
+	RPG_FIRE1,	   // crack-life second fire
 	RPG_HOLSTER1,  // loaded
 	RPG_DRAW1,	   // loaded
 	RPG_HOLSTER2,  // unloaded
@@ -1219,4 +1260,254 @@ public:
 
 private:
 	unsigned short m_usSnarkFire;
+};
+
+enum katana_e
+{
+	KATANA_IDLE = 0,
+	KATANA_DRAW,
+	KATANA_HOLSTER,
+	KATANA_ATTACK1HIT,
+	KATANA_ATTACK1MISS,
+	KATANA_ATTACK2MISS,
+	KATANA_ATTACK2HIT,
+	KATANA_ATTACK3MISS,
+	KATANA_ATTACK3HIT
+};
+
+class CKatana : public CBasePlayerWeapon
+{
+public:
+	void Spawn() override;
+	void Precache() override;
+	int iItemSlot() override { return 1; }
+	void EXPORT SwingAgain();
+	void EXPORT Smack();
+	bool GetItemInfo(ItemInfo* p) override;
+
+	void PrimaryAttack() override;
+	void SecondaryAttack() override;
+	bool Swing(bool fFirst);
+	bool Deploy() override;
+	void Holster() override;
+	int m_iSwing;
+	TraceResult m_trHit;
+
+	bool UseDecrement() override
+	{
+#if defined(CLIENT_WEAPONS)
+		return true;
+#else
+		return false;
+#endif
+	}
+
+private:
+	unsigned short m_usKatana;
+};
+
+enum hammer_e
+{
+	HAMMER_IDLE = 0,
+	HAMMER_DRAW,
+	HAMMER_ATTACK
+};
+
+class CHammer : public CBasePlayerWeapon
+{
+public:
+	void Spawn() override;
+	void Precache() override;
+	int iItemSlot() override { return 1; }
+	void EXPORT SwingAgain();
+	void EXPORT Smack();
+	bool GetItemInfo(ItemInfo* p) override;
+
+	void PrimaryAttack() override;
+	bool Swing(bool fFirst);
+	bool Deploy() override;
+	int m_iSwing;
+	TraceResult m_trHit;
+
+	bool UseDecrement() override
+	{
+#if defined(CLIENT_WEAPONS)
+		return true;
+#else
+		return false;
+#endif
+	}
+
+private:
+	unsigned short m_usHammer;
+};
+
+enum needle_e
+{
+	NEEDLE_IDLE = 0,
+	NEEDLE_GIVESHOT,
+	NEEDLE_DRAW
+};
+
+class CNeedle : public CBasePlayerWeapon
+{
+public:
+	void Spawn() override;
+	void Precache() override;
+	int iItemSlot() override { return 1; }
+	bool GetItemInfo(ItemInfo* p) override;
+
+	void PrimaryAttack() override;
+	void WeaponIdle() override;
+	bool Deploy() override;
+
+	bool UseDecrement() override
+	{
+#if defined(CLIENT_WEAPONS)
+		return true;
+#else
+		return false;
+#endif
+	}
+};
+
+enum sawnoff_e
+{
+	SAWNOFF_IDLE = 0,
+	SAWNOFF_FIRE,
+	SAWNOFF_DRAW,
+	SAWNOFF_RELOAD
+};
+
+class CSawnoff : public CBasePlayerWeapon
+{
+public:
+	void Spawn() override;
+	void Precache() override;
+	int iItemSlot() override { return 3; }
+	bool GetItemInfo(ItemInfo* p) override;
+
+	void PrimaryAttack() override;
+	bool Deploy() override;
+	void Reload() override;
+	void WeaponIdle() override;
+	int m_iShell;
+
+	bool UseDecrement() override
+	{
+#if defined(CLIENT_WEAPONS)
+		return true;
+#else
+		return false;
+#endif
+	}
+
+private:
+	unsigned short m_usSawnoff;
+};
+
+enum snipars_e
+{
+	SNIPARS_IDLE1 = 0,
+	SNIPARS_DRAW,
+	SNIPARS_FIRE1,
+	SNIPARS_RELOAD
+};
+
+class CSnipars : public CBasePlayerWeapon
+{
+public:
+	void Spawn() override;
+	void Precache() override;
+	int iItemSlot() override { return 2; }
+	bool GetItemInfo(ItemInfo* p) override;
+	void PrimaryAttack() override;
+	void SecondaryAttack() override;
+	bool Deploy() override;
+	void Holster() override;
+	void Reload() override;
+	void WeaponIdle() override;
+
+	bool UseDecrement() override
+	{
+#if defined(CLIENT_WEAPONS)
+		return true;
+#else
+		return false;
+#endif
+	}
+
+private:
+	unsigned short m_usFireSnipars;
+};
+
+enum rock_e
+{
+	ROCK_IDLE = 0,
+	ROCK_THROW,
+	ROCK_DRAW
+};
+
+class CRock : public CBasePlayerWeapon
+{
+public:
+	void Spawn() override;
+	void Precache() override;
+	int iItemSlot() override { return 1; }
+	bool GetItemInfo(ItemInfo* p) override;
+
+	void PrimaryAttack() override;
+	void WeaponIdle() override;
+	bool Deploy() override;
+	bool m_fRockThrow;
+
+	bool UseDecrement() override
+	{
+#if defined(CLIENT_WEAPONS)
+		return true;
+#else
+		return false;
+#endif
+	}
+};
+
+enum pepsigun_e
+{
+	PEPSIGUN_IDLE = 0,
+	PEPSIGUN_FIRE,
+	PEPSIGUN_OPEN,
+	PEPSIGUN_INSERT,
+	PEPSIGUN_CLOSE,
+	PEPSIGUN_DRAW
+};
+
+class CPepsiGun : public CBasePlayerWeapon
+{
+public:
+#ifndef CLIENT_DLL
+	bool Save(CSave& save) override;
+	bool Restore(CRestore& restore) override;
+	static TYPEDESCRIPTION m_SaveData[];
+#endif
+
+
+	void Spawn() override;
+	void Precache() override;
+	int iItemSlot() override { return 3; }
+	bool GetItemInfo(ItemInfo* p) override;
+
+	void PrimaryAttack() override;
+	bool Deploy() override;
+	void Reload() override;
+	void WeaponIdle() override;
+	float m_flNextReload;
+
+	bool UseDecrement() override
+	{
+#if defined(CLIENT_WEAPONS)
+		return true;
+#else
+		return false;
+#endif
+	}
 };

@@ -286,6 +286,85 @@ void CGrenade::BounceTouch(CBaseEntity* pOther)
 }
 
 
+void CGrenadeRock::BounceTouch(CBaseEntity* pOther)
+{
+	// don't hit the guy that launched this grenade
+	if (pOther->edict() == pev->owner)
+		return;
+
+	// only do damage if we're moving fairly fast
+	if (m_flNextAttack < gpGlobals->time && pev->velocity.Length() > 100)
+	{
+		entvars_t* pevOwner = VARS(pev->owner);
+		if (pevOwner)
+		{
+			TraceResult tr = UTIL_GetGlobalTrace();
+			ClearMultiDamage();
+			pOther->TraceAttack(pevOwner, 10, gpGlobals->v_forward, &tr, DMG_CLUB);
+			ApplyMultiDamage(pev, pevOwner);
+		}
+		m_flNextAttack = gpGlobals->time + 1.0; // debounce
+	}
+
+	Vector vecTestVelocity;
+	// pev->avelocity = Vector (300, 300, 300);
+
+	// this is my heuristic for modulating the grenade velocity because grenades dropped purely vertical
+	// or thrown very far tend to slow down too quickly for me to always catch just by testing velocity.
+	// trimming the Z velocity a bit seems to help quite a bit.
+	vecTestVelocity = pev->velocity;
+	vecTestVelocity.z *= 0.45;
+
+	if ((pev->flags & FL_ONGROUND) != 0)
+	{
+		// add a bit of static friction
+		pev->velocity = pev->velocity * 0.8;
+
+		pev->sequence = RANDOM_LONG(1, 1);
+	}
+	else
+	{
+		// play bounce sound
+		BounceSound();
+	}
+	pev->framerate = pev->velocity.Length() / 200.0;
+	if (pev->framerate > 1.0)
+		pev->framerate = 1;
+	else if (pev->framerate < 0.5)
+		pev->framerate = 0;
+}
+
+
+void CGrenadeFedora::BounceTouch(CBaseEntity* pOther)
+{
+	// don't hit the guy that launched this grenade
+	if (pOther->edict() == pev->owner)
+		return;
+
+	Vector vecTestVelocity;
+	// pev->avelocity = Vector (300, 300, 300);
+
+	// this is my heuristic for modulating the grenade velocity because grenades dropped purely vertical
+	// or thrown very far tend to slow down too quickly for me to always catch just by testing velocity.
+	// trimming the Z velocity a bit seems to help quite a bit.
+	vecTestVelocity = pev->velocity;
+	vecTestVelocity.z *= 0.45;
+
+	if ((pev->flags & FL_ONGROUND) != 0)
+	{
+		// add a bit of static friction
+		pev->velocity = pev->velocity * 0.8;
+
+		pev->sequence = RANDOM_LONG(1, 1);
+	}
+	pev->framerate = pev->velocity.Length() / 200.0;
+	if (pev->framerate > 1.0)
+		pev->framerate = 1;
+	else if (pev->framerate < 0.5)
+		pev->framerate = 0;
+}
+
+
 
 void CGrenade::SlideTouch(CBaseEntity* pOther)
 {
@@ -431,6 +510,60 @@ CGrenade* CGrenade::ShootTimed(entvars_t* pevOwner, Vector vecStart, Vector vecV
 	pGrenade->pev->friction = 0.8;
 
 	SET_MODEL(ENT(pGrenade->pev), "models/w_grenade.mdl");
+	pGrenade->pev->dmg = 100;
+
+	return pGrenade;
+}
+
+
+CGrenade* CGrenadeRock::ShootTimed(entvars_t* pevOwner, Vector vecStart, Vector vecVelocity)
+{
+	CGrenade* pGrenade = GetClassPtr((CGrenade*)NULL);
+	pGrenade->Spawn();
+	UTIL_SetOrigin(pGrenade->pev, vecStart);
+	pGrenade->pev->velocity = vecVelocity;
+	pGrenade->pev->angles = UTIL_VecToAngles(pGrenade->pev->velocity);
+	pGrenade->pev->owner = ENT(pevOwner);
+
+	pGrenade->SetTouch(&CGrenadeRock::BounceTouch); // Bounce if touched
+
+	pGrenade->pev->sequence = RANDOM_LONG(3, 6);
+	pGrenade->pev->framerate = 1.0;
+
+	// Tumble through the air
+	// pGrenade->pev->avelocity.x = -400;
+
+	pGrenade->pev->gravity = 0.5;
+	pGrenade->pev->friction = 0.8;
+
+	SET_MODEL(ENT(pGrenade->pev), "models/w_rock.mdl");
+	pGrenade->pev->dmg = 100;
+
+	return pGrenade;
+}
+
+
+CGrenade* CGrenadeFedora::ShootTimed(entvars_t* pevOwner, Vector vecStart, Vector vecVelocity)
+{
+	CGrenade* pGrenade = GetClassPtr((CGrenade*)NULL);
+	pGrenade->Spawn();
+	UTIL_SetOrigin(pGrenade->pev, vecStart);
+	pGrenade->pev->velocity = vecVelocity;
+	pGrenade->pev->angles = UTIL_VecToAngles(pGrenade->pev->velocity);
+	pGrenade->pev->owner = ENT(pevOwner);
+
+	pGrenade->SetTouch(&CGrenadeFedora::BounceTouch); // Bounce if touched
+
+	pGrenade->pev->sequence = RANDOM_LONG(3, 6);
+	pGrenade->pev->framerate = 1.0;
+
+	// Tumble through the air
+	// pGrenade->pev->avelocity.x = -400;
+
+	pGrenade->pev->gravity = 0.5;
+	pGrenade->pev->friction = 0.8;
+
+	SET_MODEL(ENT(pGrenade->pev), "models/fedora.mdl");
 	pGrenade->pev->dmg = 100;
 
 	return pGrenade;

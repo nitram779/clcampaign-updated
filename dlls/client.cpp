@@ -901,6 +901,9 @@ void ClientPrecache()
 	PRECACHE_SOUND("player/geiger2.wav");
 	PRECACHE_SOUND("player/geiger1.wav");
 
+	// death sound
+	PRECACHE_SOUND("ambience/wind1.wav");
+
 	if (giPrecacheGrunt)
 		UTIL_PrecacheOther("monster_human_grunt");
 }
@@ -1743,6 +1746,7 @@ void UpdateClientData(const edict_t* ent, int sendweapons, struct clientdata_s* 
 			cd->ammo_rockets = pl->ammo_rockets;
 			cd->ammo_cells = pl->ammo_uranium;
 			cd->vuser2.x = pl->ammo_hornets;
+			cd->vuser2.y = pl->ammo_snipars;
 
 
 			if (pl->m_pActiveItem)

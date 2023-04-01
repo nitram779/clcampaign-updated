@@ -13,7 +13,7 @@
 *
 ****/
 //=========================================================
-// Zombie
+// Pink Panther (Based on Zombie code)
 //=========================================================
 
 // UNDONE: Don't flinch every time you get hit
@@ -28,10 +28,10 @@
 //=========================================================
 // Monster's Anim Events Go Here
 //=========================================================
-#define ZOMBIE_AE_ATTACK 0x01
-#define ZOMBIE_FLINCH_DELAY 2 // at most one flinch every n secs
+#define PINKPANTHER_AE_ATTACK 0x01
+#define PINKPANTHER_FLINCH_DELAY 2 // at most one flinch every n secs
 
-class CZombie : public CBaseMonster
+class CPPanther : public CBaseMonster
 {
 public:
 	void Spawn() override;
@@ -61,53 +61,53 @@ public:
 	bool TakeDamage(entvars_t* pevInflictor, entvars_t* pevAttacker, float flDamage, int bitsDamageType) override;
 };
 
-LINK_ENTITY_TO_CLASS(monster_zombie, CZombie);
+LINK_ENTITY_TO_CLASS(monster_pink_panther, CPPanther);
 
-const char* CZombie::pAttackHitSounds[] =
+const char* CPPanther::pAttackHitSounds[] =
 	{
 		"zombie/claw_strike1.wav",
 		"zombie/claw_strike2.wav",
 		"zombie/claw_strike3.wav",
 };
 
-const char* CZombie::pAttackMissSounds[] =
+const char* CPPanther::pAttackMissSounds[] =
 	{
 		"zombie/claw_miss1.wav",
 		"zombie/claw_miss2.wav",
 };
 
-const char* CZombie::pAttackSounds[] =
+const char* CPPanther::pAttackSounds[] =
 	{
-		"zombie/zo_attack1.wav",
-		"zombie/zo_attack2.wav",
+		"panther/zo_attack1.wav",
+		"panther/zo_attack2.wav",
 };
 
-const char* CZombie::pIdleSounds[] =
+const char* CPPanther::pIdleSounds[] =
 	{
-		"zombie/zo_idle1.wav",
-		"zombie/zo_idle2.wav",
-		"zombie/zo_idle3.wav",
-		"zombie/zo_idle4.wav",
+		"panther/zo_idle1.wav",
+		"panther/zo_idle2.wav",
+		"panther/zo_idle3.wav",
+		"panther/zo_idle4.wav",
 };
 
-const char* CZombie::pAlertSounds[] =
+const char* CPPanther::pAlertSounds[] =
 	{
-		"zombie/zo_alert10.wav",
-		"zombie/zo_alert20.wav",
-		"zombie/zo_alert30.wav",
+		"panther/zo_alert10.wav",
+		"panther/zo_alert20.wav",
+		"panther/zo_alert30.wav",
 };
 
-const char* CZombie::pPainSounds[] =
+const char* CPPanther::pPainSounds[] =
 	{
-		"zombie/zo_pain1.wav",
-		"zombie/zo_pain2.wav",
+		"panther/zo_pain1.wav",
+		"panther/zo_pain2.wav",
 };
 
 //=========================================================
 // Classify - indicates this monster's place in the
 // relationship table.
 //=========================================================
-int CZombie::Classify()
+int CPPanther::Classify()
 {
 	return CLASS_ALIEN_MONSTER;
 }
@@ -116,7 +116,7 @@ int CZombie::Classify()
 // SetYawSpeed - allows each sequence to have a different
 // turn rate associated with it.
 //=========================================================
-void CZombie::SetYawSpeed()
+void CPPanther::SetYawSpeed()
 {
 	int ys;
 
@@ -131,7 +131,7 @@ void CZombie::SetYawSpeed()
 	pev->yaw_speed = ys;
 }
 
-bool CZombie::TakeDamage(entvars_t* pevInflictor, entvars_t* pevAttacker, float flDamage, int bitsDamageType)
+bool CPPanther::TakeDamage(entvars_t* pevInflictor, entvars_t* pevAttacker, float flDamage, int bitsDamageType)
 {
 	// Take 30% damage from bullets
 	if (bitsDamageType == DMG_BULLET)
@@ -149,7 +149,7 @@ bool CZombie::TakeDamage(entvars_t* pevInflictor, entvars_t* pevAttacker, float 
 	return CBaseMonster::TakeDamage(pevInflictor, pevAttacker, flDamage, bitsDamageType);
 }
 
-void CZombie::PainSound()
+void CPPanther::PainSound()
 {
 	int pitch = 95 + RANDOM_LONG(0, 9);
 
@@ -157,14 +157,14 @@ void CZombie::PainSound()
 		EMIT_SOUND_DYN(ENT(pev), CHAN_VOICE, RANDOM_SOUND_ARRAY(pPainSounds), 1.0, ATTN_NORM, 0, pitch);
 }
 
-void CZombie::AlertSound()
+void CPPanther::AlertSound()
 {
 	int pitch = 95 + RANDOM_LONG(0, 9);
 
 	EMIT_SOUND_DYN(ENT(pev), CHAN_VOICE, RANDOM_SOUND_ARRAY(pAlertSounds), 1.0, ATTN_NORM, 0, pitch);
 }
 
-void CZombie::IdleSound()
+void CPPanther::IdleSound()
 {
 	int pitch = 100 + RANDOM_LONG(-5, 5);
 
@@ -172,7 +172,7 @@ void CZombie::IdleSound()
 	EMIT_SOUND_DYN(ENT(pev), CHAN_VOICE, RANDOM_SOUND_ARRAY(pIdleSounds), 1.0, ATTN_NORM, 0, pitch);
 }
 
-void CZombie::AttackSound()
+void CPPanther::AttackSound()
 {
 	int pitch = 100 + RANDOM_LONG(-5, 5);
 
@@ -185,15 +185,15 @@ void CZombie::AttackSound()
 // HandleAnimEvent - catches the monster-specific messages
 // that occur when tagged animation frames are played.
 //=========================================================
-void CZombie::HandleAnimEvent(MonsterEvent_t* pEvent)
+void CPPanther::HandleAnimEvent(MonsterEvent_t* pEvent)
 {
 	switch (pEvent->event)
 	{
-	case ZOMBIE_AE_ATTACK:
+	case PINKPANTHER_AE_ATTACK:
 	{
 		// do stuff for this event.
 		//		ALERT( at_console, "Slash right!\n" );
-		CBaseEntity* pHurt = CheckTraceHullAttack(70, gSkillData.zombieDmgSlash, DMG_SLASH);
+		CBaseEntity* pHurt = CheckTraceHullAttack(70, gSkillData.pinkpantherDmgSlash, DMG_SLASH);
 		if (pHurt)
 		{
 			if ((pHurt->pev->flags & (FL_MONSTER | FL_CLIENT)) != 0)
@@ -222,17 +222,17 @@ void CZombie::HandleAnimEvent(MonsterEvent_t* pEvent)
 //=========================================================
 // Spawn
 //=========================================================
-void CZombie::Spawn()
+void CPPanther::Spawn()
 {
 	Precache();
 
-	SET_MODEL(ENT(pev), "models/zombie.mdl");
+	SET_MODEL(ENT(pev), "models/pink_panther.mdl");
 	UTIL_SetSize(pev, VEC_HUMAN_HULL_MIN, VEC_HUMAN_HULL_MAX);
 
 	pev->solid = SOLID_SLIDEBOX;
 	pev->movetype = MOVETYPE_STEP;
 	m_bloodColor = BLOOD_COLOR_RED;
-	pev->health = gSkillData.zombieHealth;
+	pev->health = gSkillData.pinkpantherHealth;
 	pev->view_ofs = VEC_VIEW; // position of the eyes relative to monster's origin.
 	m_flFieldOfView = 0.5;	  // indicates the width of this monster's forward view cone ( as a dotproduct result )
 	m_MonsterState = MONSTERSTATE_NONE;
@@ -244,9 +244,9 @@ void CZombie::Spawn()
 //=========================================================
 // Precache - precaches all resources this monster needs
 //=========================================================
-void CZombie::Precache()
+void CPPanther::Precache()
 {
-	PRECACHE_MODEL("models/zombie.mdl");
+	PRECACHE_MODEL("models/pink_panther.mdl");
 
 	PRECACHE_SOUND_ARRAY(pAttackHitSounds);
 	PRECACHE_SOUND_ARRAY(pAttackMissSounds);
@@ -262,7 +262,7 @@ void CZombie::Precache()
 
 
 
-int CZombie::IgnoreConditions()
+int CPPanther::IgnoreConditions()
 {
 	int iIgnore = CBaseMonster::IgnoreConditions();
 
@@ -280,7 +280,7 @@ int CZombie::IgnoreConditions()
 	if ((m_Activity == ACT_SMALL_FLINCH) || (m_Activity == ACT_BIG_FLINCH))
 	{
 		if (m_flNextFlinch < gpGlobals->time)
-			m_flNextFlinch = gpGlobals->time + ZOMBIE_FLINCH_DELAY;
+			m_flNextFlinch = gpGlobals->time + PINKPANTHER_FLINCH_DELAY;
 	}
 
 	return iIgnore;

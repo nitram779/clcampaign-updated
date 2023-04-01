@@ -487,6 +487,11 @@ void CGargantua::EyeUpdate()
 
 void CGargantua::StompAttack()
 {
+	Vector vecSrc = pev->origin + pev->view_ofs + gpGlobals->v_forward * 16;
+	Vector vecThrow = gpGlobals->v_forward * 1000 + pev->velocity;
+	UTIL_MakeVectors(pev->angles);
+	CGrenade::ShootContact(pev, vecSrc, vecThrow);
+
 	TraceResult trace;
 
 	UTIL_MakeVectors(pev->angles);

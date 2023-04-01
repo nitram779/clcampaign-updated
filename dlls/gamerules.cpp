@@ -275,8 +275,7 @@ void CGameRules::RefreshSkillData()
 
 	// Zombie
 	gSkillData.zombieHealth = GetSkillCvar("sk_zombie_health");
-	gSkillData.zombieDmgOneSlash = GetSkillCvar("sk_zombie_dmg_one_slash");
-	gSkillData.zombieDmgBothSlash = GetSkillCvar("sk_zombie_dmg_both_slash");
+	gSkillData.zombieDmgSlash = GetSkillCvar("sk_zombie_dmg_slash");
 
 	//Turret
 	gSkillData.turretHealth = GetSkillCvar("sk_turret_health");
@@ -286,6 +285,67 @@ void CGameRules::RefreshSkillData()
 
 	// Sentry Turret
 	gSkillData.sentryHealth = GetSkillCvar("sk_sentry_health");
+
+
+	// CRACK-LIFE MONSTERS
+
+	// Skeleton
+	gSkillData.skeletonHealth = GetSkillCvar("sk_skeleton_health");
+	gSkillData.skeletonDmgOneSlash = GetSkillCvar("sk_skeleton_dmg_one_slash");
+	gSkillData.skeletonDmgBothSlash = GetSkillCvar("sk_skeleton_dmg_both_slash");
+
+	// SuperChav
+	gSkillData.superchavHealth = GetSkillCvar("sk_superchav_health");
+	gSkillData.superchavDmgSlash = GetSkillCvar("sk_superchav_dmg_slash");
+
+	// Skrillex
+	gSkillData.skrillexHealth = GetSkillCvar("sk_skrillex_health");
+	gSkillData.skrillexDmgClaw = GetSkillCvar("sk_skrillex_dmg_claw");
+	gSkillData.skrillexDmgClawrake = GetSkillCvar("sk_skrillex_dmg_clawrake");
+	gSkillData.skrillexDmgZap = GetSkillCvar("sk_skrillex_dmg_zap");
+
+	// MegaChav
+	gSkillData.megachavHealth = GetSkillCvar("sk_megachav_health");
+	gSkillData.megachavDmgSlash = GetSkillCvar("sk_megachav_dmg_slash");
+
+	// Pink Panther
+	gSkillData.pinkpantherHealth = GetSkillCvar("sk_pinkpanther_health");
+	gSkillData.pinkpantherDmgSlash = GetSkillCvar("sk_pinkpanther_dmg_slash");
+
+	// Big Smoke
+	gSkillData.bigsmokeHealth = GetSkillCvar("sk_bigsmoke_health");
+	gSkillData.bigsmokeDmgKick = GetSkillCvar("sk_bigsmoke_kick");
+	gSkillData.bigsmokeShotgunPellets = GetSkillCvar("sk_bigsmoke_pellets");
+	gSkillData.bigsmokeGrenadeSpeed = GetSkillCvar("sk_bigsmoke_gspeed");
+
+	// Bonewheel
+	gSkillData.bonewheelHealth = GetSkillCvar("sk_bonewheel_health");
+	gSkillData.bonewheelDmgSlash = GetSkillCvar("sk_bonewheel_dmg_slash");
+
+	// Mario Zombie
+	gSkillData.mariozombieHealth = GetSkillCvar("sk_mariozombie_health");
+	gSkillData.mariozombieDmgOneSlash = GetSkillCvar("sk_mariozombie_dmg_one_slash");
+	gSkillData.mariozombieDmgBothSlash = GetSkillCvar("sk_mariozombie_dmg_both_slash");
+
+	// Shrek
+	gSkillData.shrekHealth = GetSkillCvar("sk_shrek_health");
+	gSkillData.shrekDmgBite = GetSkillCvar("sk_shrek_dmg_bite");
+	gSkillData.shrekDmgWhip = GetSkillCvar("sk_shrek_dmg_whip");
+	gSkillData.shrekDmgSpit = GetSkillCvar("sk_shrek_dmg_spit");
+
+	// Zombozo
+	gSkillData.zombozoHealth = GetSkillCvar("sk_zombozo_health");
+	gSkillData.zombozoDmgOneSlash = GetSkillCvar("sk_zombozo_dmg_one_slash");
+	gSkillData.zombozoDmgBothSlash = GetSkillCvar("sk_zombozo_dmg_both_slash");
+
+	// Terror
+	gSkillData.terrorHealth = GetSkillCvar("sk_terror_health");
+	gSkillData.terrorDmgExplode = GetSkillCvar("sk_terror_dmg_explode");
+
+	// Evil Scientist
+	gSkillData.evilsciHealth = GetSkillCvar("sk_evilsci_health");
+	gSkillData.evilsciDmgSlash = GetSkillCvar("sk_evilsci_dmg_slash");
+
 
 	// PLAYER WEAPONS
 
@@ -330,10 +390,27 @@ void CGameRules::RefreshSkillData()
 	// Tripmine
 	gSkillData.plrDmgTripmine = GetSkillCvar("sk_plr_tripmine");
 
+
+	// CRACK-LIFE WEAPONS
+
+	// Katana
+	gSkillData.plrDmgKatana = GetSkillCvar("sk_plr_katana");
+
+	// Hammer
+	gSkillData.plrDmgHammer = GetSkillCvar("sk_plr_hammer");
+
+	// Sawnoff
+	gSkillData.plrDmgSawnoff = GetSkillCvar("sk_plr_sawnoff");
+
+	// Snipars
+	gSkillData.plrDmgSnipars = GetSkillCvar("sk_plr_snipars");
+
+
 	// MONSTER WEAPONS
 	gSkillData.monDmg12MM = GetSkillCvar("sk_12mm_bullet");
 	gSkillData.monDmgMP5 = GetSkillCvar("sk_9mmAR_bullet");
 	gSkillData.monDmg9MM = GetSkillCvar("sk_9mm_bullet");
+	gSkillData.monDmgBuckshot = GetSkillCvar("sk_buckshot_bullet");
 
 	// MONSTER HORNET
 	gSkillData.monDmgHornet = GetSkillCvar("sk_hornet_dmg");

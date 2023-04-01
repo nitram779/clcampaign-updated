@@ -247,31 +247,38 @@ int TrainSpeed(int iSpeed, int iMax)
 
 void CBasePlayer::DeathSound()
 {
-	// water death sounds
-	/*
-	if (pev->waterlevel == 3)
-	{
-		EMIT_SOUND(ENT(pev), CHAN_VOICE, "player/h2odeath.wav", 1, ATTN_NONE);
-		return;
-	}
-	*/
-
-	// temporarily using pain sounds for death sounds
-	switch (RANDOM_LONG(1, 5))
+	switch (RANDOM_LONG(1, 9))
 	{
 	case 1:
-		EMIT_SOUND(ENT(pev), CHAN_VOICE, "player/pl_pain5.wav", 1, ATTN_NORM);
+		ClientPrint(pev, HUD_PRINTCENTER, "YOU USELESS SHITSTAIN");
 		break;
 	case 2:
-		EMIT_SOUND(ENT(pev), CHAN_VOICE, "player/pl_pain6.wav", 1, ATTN_NORM);
+		ClientPrint(pev, HUD_PRINTCENTER, "GAME OVER MOTHERFUCKER! YOU SUCK!");
 		break;
 	case 3:
-		EMIT_SOUND(ENT(pev), CHAN_VOICE, "player/pl_pain7.wav", 1, ATTN_NORM);
+		ClientPrint(pev, HUD_PRINTCENTER, "HOW THE HELL ARE YOU SO BAD AT THIS GAME?");
+		break;
+	case 4:
+		ClientPrint(pev, HUD_PRINTCENTER, "HOW DO YOU FUCK UP SO BADLY JESUS FUCKING CHRIST?");
+		break;
+	case 5:
+		ClientPrint(pev, HUD_PRINTCENTER, "YOU DIED! CONGRATS FUCKFACE");
+		break;
+	case 6:
+		ClientPrint(pev, HUD_PRINTCENTER, "OH MY GOD YOU SUCK! AUTO-UNINSTALLING");
+		break;
+	case 7:
+		ClientPrint(pev, HUD_PRINTCENTER, "HOLY FUCKING SHIT SERIOUSLY");
+		break;
+	case 8:
+		ClientPrint(pev, HUD_PRINTCENTER, "YOU FUCKING RETARD!");
+		break;
+	case 9:
+		ClientPrint(pev, HUD_PRINTCENTER, "YOU DENSE FUCK");
 		break;
 	}
 
-	// play one of the suit death alarms
-	EMIT_GROUPNAME_SUIT(ENT(pev), "HEV_DEAD");
+	EMIT_SOUND(ENT(pev), CHAN_VOICE, "ambience/wind1.wav", 1, ATTN_NORM);
 }
 
 // override takehealth
@@ -761,6 +768,7 @@ void CBasePlayer::RemoveAllItems(bool removeSuit)
 
 void CBasePlayer::Killed(entvars_t* pevAttacker, int iGib)
 {
+	DeathSound();
 	CSound* pSound;
 
 	// Holster weapon immediately, to allow it to cleanup
@@ -1029,6 +1037,7 @@ void CBasePlayer::TabulateAmmo()
 	ammo_rockets = AmmoInventory(GetAmmoIndex("rockets"));
 	ammo_uranium = AmmoInventory(GetAmmoIndex("uranium"));
 	ammo_hornets = AmmoInventory(GetAmmoIndex("Hornets"));
+	ammo_snipars = AmmoInventory(GetAmmoIndex("snipars"));
 }
 
 
@@ -3488,6 +3497,13 @@ void CBasePlayer::CheatImpulseCommands(int iImpulse)
 		GiveNamedItem("weapon_satchel");
 		GiveNamedItem("weapon_snark");
 		GiveNamedItem("weapon_hornetgun");
+		GiveNamedItem("weapon_katana");
+		GiveNamedItem("weapon_hammer");
+		GiveNamedItem("weapon_needle");
+		GiveNamedItem("weapon_sawnoff");
+		GiveNamedItem("weapon_snipars");
+		GiveNamedItem("weapon_rock");
+		GiveNamedItem("weapon_pepsigun");
 
 		gEvilImpulse101 = false;
 		break;

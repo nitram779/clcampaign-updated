@@ -159,6 +159,8 @@ const char* CAGrunt::pAttackSounds[] =
 const char* CAGrunt::pDieSounds[] =
 	{
 		"agrunt/ag_die1.wav",
+		"agrunt/ag_die2.wav",
+		"agrunt/ag_die3.wav",
 		"agrunt/ag_die4.wav",
 		"agrunt/ag_die5.wav",
 };
@@ -178,11 +180,13 @@ const char* CAGrunt::pIdleSounds[] =
 		"agrunt/ag_idle2.wav",
 		"agrunt/ag_idle3.wav",
 		"agrunt/ag_idle4.wav",
+		"agrunt/ag_idle5.wav",
 };
 
 const char* CAGrunt::pAlertSounds[] =
 	{
 		"agrunt/ag_alert1.wav",
+		"agrunt/ag_alert2.wav",
 		"agrunt/ag_alert3.wav",
 		"agrunt/ag_alert4.wav",
 		"agrunt/ag_alert5.wav",

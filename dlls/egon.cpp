@@ -465,22 +465,8 @@ void CEgon::WeaponIdle()
 	if (m_fireState != FIRE_OFF)
 		EndAttack();
 
-	int iAnim;
-
-	float flRand = RANDOM_FLOAT(0, 1);
-
-	if (flRand <= 0.5)
-	{
-		iAnim = EGON_IDLE1;
-		m_flTimeWeaponIdle = UTIL_WeaponTimeBase() + UTIL_SharedRandomFloat(m_pPlayer->random_seed, 10, 15);
-	}
-	else
-	{
-		iAnim = EGON_FIDGET1;
-		m_flTimeWeaponIdle = UTIL_WeaponTimeBase() + 3;
-	}
-
-	SendWeaponAnim(iAnim);
+	SendWeaponAnim(EGON_IDLE1);
+	m_flTimeWeaponIdle = UTIL_WeaponTimeBase() + 6;
 	m_deployed = true;
 }
 

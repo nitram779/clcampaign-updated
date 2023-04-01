@@ -312,6 +312,9 @@ void CHAssassin::Precache()
 
 	PRECACHE_SOUND("debris/beamstart1.wav");
 
+	PRECACHE_SOUND("phat/fart1.wav");
+	PRECACHE_SOUND("phat/fart3.wav");
+
 	m_iShell = PRECACHE_MODEL("models/shell.mdl"); // brass shell
 }
 

@@ -236,6 +236,9 @@ const char** CBreakable::MaterialSoundList(Materials precacheMaterial, int& soun
 		soundCount = ARRAYSIZE(pSoundsFlesh);
 		break;
 	case matComputer:
+		pSoundList = pSoundsMetal;
+		soundCount = ARRAYSIZE(pSoundsMetal);
+		break;
 	case matUnbreakableGlass:
 	case matGlass:
 		pSoundList = pSoundsGlass;

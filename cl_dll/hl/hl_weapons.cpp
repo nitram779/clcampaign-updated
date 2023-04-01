@@ -64,6 +64,13 @@ CHandGrenade g_HandGren;
 CSatchel g_Satchel;
 CTripmine g_Tripmine;
 CSqueak g_Snark;
+CKatana g_Katana;
+CHammer g_Hammer;
+CNeedle g_Needle;
+CSawnoff g_Sawnoff;
+CSnipars g_Snipars;
+CRock g_Rock;
+CPepsiGun g_PepsiGun;
 
 
 /*
@@ -464,6 +471,13 @@ void HUD_InitClientWeapons()
 	HUD_PrepEntity(&g_Satchel, &player);
 	HUD_PrepEntity(&g_Tripmine, &player);
 	HUD_PrepEntity(&g_Snark, &player);
+	HUD_PrepEntity(&g_Katana, &player);
+	HUD_PrepEntity(&g_Hammer, &player);
+	HUD_PrepEntity(&g_Needle, &player);
+	HUD_PrepEntity(&g_Sawnoff, &player);
+	HUD_PrepEntity(&g_Snipars, &player);
+	HUD_PrepEntity(&g_Rock, &player);
+	HUD_PrepEntity(&g_PepsiGun, &player);
 }
 
 /*
@@ -586,6 +600,34 @@ void HUD_WeaponsPostThink(local_state_s* from, local_state_s* to, usercmd_t* cmd
 	case WEAPON_SNARK:
 		pWeapon = &g_Snark;
 		break;
+
+	case WEAPON_KATANA:
+		pWeapon = &g_Katana;
+		break;
+
+	case WEAPON_HAMMER:
+		pWeapon = &g_Hammer;
+		break;
+
+	case WEAPON_NEEDLE:
+		pWeapon = &g_Needle;
+		break;
+
+	case WEAPON_SAWNOFF:
+		pWeapon = &g_Sawnoff;
+		break;
+
+	case WEAPON_SNIPARS:
+		pWeapon = &g_Snipars;
+		break;
+
+	case WEAPON_ROCK:
+		pWeapon = &g_Rock;
+		break;
+
+	case WEAPON_PEPSIGUN:
+		pWeapon = &g_PepsiGun;
+		break;
 	}
 
 	// Store pointer to our destination entity_state_t so we can get our origin, etc. from it
@@ -685,6 +727,7 @@ void HUD_WeaponsPostThink(local_state_s* from, local_state_s* to, usercmd_t* cmd
 	player.ammo_uranium = (int)from->client.ammo_cells;
 	player.ammo_hornets = (int)from->client.vuser2[0];
 	player.ammo_rockets = (int)from->client.ammo_rockets;
+	player.ammo_snipars = (int)from->client.vuser2[1];
 
 
 	// Point to current weapon object
@@ -760,6 +803,7 @@ void HUD_WeaponsPostThink(local_state_s* from, local_state_s* to, usercmd_t* cmd
 	to->client.ammo_cells = player.ammo_uranium;
 	to->client.vuser2[0] = player.ammo_hornets;
 	to->client.ammo_rockets = player.ammo_rockets;
+	to->client.vuser2[1] = player.ammo_snipars;
 
 	if (player.m_pActiveItem->m_iId == WEAPON_RPG)
 	{
@@ -773,6 +817,7 @@ void HUD_WeaponsPostThink(local_state_s* from, local_state_s* to, usercmd_t* cmd
 	{
 		//Make sure the 357 has the right body
 		g_Python.pev->body = bIsMultiplayer() ? 1 : 0;
+		g_Snipars.pev->body = bIsMultiplayer() ? 1 : 0;
 
 		// Force a fixed anim down to viewmodel
 		HUD_SendWeaponAnim(to->client.weaponanim, pWeapon->pev->body, true);

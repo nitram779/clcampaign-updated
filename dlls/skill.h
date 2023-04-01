@@ -85,12 +85,59 @@ struct skilldata_t
 	float snarkDmgPop;
 
 	float zombieHealth;
-	float zombieDmgOneSlash;
-	float zombieDmgBothSlash;
+	float zombieDmgSlash;
 
 	float turretHealth;
 	float miniturretHealth;
 	float sentryHealth;
+
+
+	// Crack-Life Monsters
+
+	float skeletonHealth;
+	float skeletonDmgOneSlash;
+	float skeletonDmgBothSlash;
+
+	float superchavHealth;
+	float superchavDmgSlash;
+
+	float skrillexHealth;
+	float skrillexDmgClaw;
+	float skrillexDmgClawrake;
+	float skrillexDmgZap;
+
+	float megachavHealth;
+	float megachavDmgSlash;
+
+	float pinkpantherHealth;
+	float pinkpantherDmgSlash;
+
+	float bigsmokeHealth;
+	float bigsmokeDmgKick;
+	float bigsmokeShotgunPellets;
+	float bigsmokeGrenadeSpeed;
+
+	float bonewheelHealth;
+	float bonewheelDmgSlash;
+
+	float mariozombieHealth;
+	float mariozombieDmgOneSlash;
+	float mariozombieDmgBothSlash;
+
+	float shrekHealth;
+	float shrekDmgBite;
+	float shrekDmgWhip;
+	float shrekDmgSpit;
+
+	float zombozoHealth;
+	float zombozoDmgOneSlash;
+	float zombozoDmgBothSlash;
+
+	float terrorHealth;
+	float terrorDmgExplode;
+
+	float evilsciHealth;
+	float evilsciDmgSlash;
 
 
 	// Player Weapons
@@ -111,11 +158,18 @@ struct skilldata_t
 	float plrDmgSatchel;
 	float plrDmgTripmine;
 
+	// Crack-Life Weapons
+	float plrDmgKatana;
+	float plrDmgHammer;
+	float plrDmgSawnoff;
+	float plrDmgSnipars;
+
 	// weapons shared by monsters
 	float monDmg9MM;
 	float monDmgMP5;
 	float monDmg12MM;
 	float monDmgHornet;
+	float monDmgBuckshot;
 
 	// health/suit charge
 	float suitchargerCapacity;

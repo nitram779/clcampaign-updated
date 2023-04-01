@@ -155,7 +155,10 @@ void DecalGunshot(TraceResult* pTrace, int iBulletType)
 		case BULLET_PLAYER_MP5:
 		case BULLET_MONSTER_MP5:
 		case BULLET_PLAYER_BUCKSHOT:
+		case BULLET_MONSTER_BUCKSHOT:
 		case BULLET_PLAYER_357:
+		case BULLET_PLAYER_SAWNOFF:
+		case BULLET_PLAYER_SNIPARS:
 		default:
 			// smoke and decal
 			UTIL_GunshotDecalTrace(pTrace, DamageDecal(pEntity, DMG_BULLET));
@@ -321,6 +324,28 @@ void W_Precache()
 
 	// hornetgun
 	UTIL_PrecacheOtherWeapon("weapon_hornetgun");
+
+	// katana
+	UTIL_PrecacheOtherWeapon("weapon_katana");
+
+	// hammer
+	UTIL_PrecacheOtherWeapon("weapon_hammer");
+
+	// needle
+	UTIL_PrecacheOtherWeapon("weapon_needle");
+
+	// sawnoff
+	UTIL_PrecacheOtherWeapon("weapon_sawnoff");
+
+	// snipars
+	UTIL_PrecacheOtherWeapon("weapon_snipars");
+	UTIL_PrecacheOther("ammo_snipars");
+
+	// rock
+	UTIL_PrecacheOtherWeapon("weapon_rock");
+
+	// pepsigun
+	UTIL_PrecacheOtherWeapon("weapon_pepsigun");
 
 	if (g_pGameRules->IsDeathmatch())
 	{
@@ -1440,3 +1465,11 @@ TYPEDESCRIPTION CSatchel::m_SaveData[] =
 		DEFINE_FIELD(CSatchel, m_chargeReady, FIELD_INTEGER),
 };
 IMPLEMENT_SAVERESTORE(CSatchel, CBasePlayerWeapon);
+
+TYPEDESCRIPTION CPepsiGun::m_SaveData[] =
+	{
+		DEFINE_FIELD(CPepsiGun, m_flNextReload, FIELD_TIME),
+		DEFINE_FIELD(CPepsiGun, m_fInSpecialReload, FIELD_INTEGER),
+		DEFINE_FIELD(CPepsiGun, m_flNextReload, FIELD_TIME),
+};
+IMPLEMENT_SAVERESTORE(CPepsiGun, CBasePlayerWeapon);

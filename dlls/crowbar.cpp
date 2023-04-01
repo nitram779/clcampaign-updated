@@ -49,6 +49,10 @@ void CCrowbar::Precache()
 	PRECACHE_SOUND("weapons/cbar_hitbod2.wav");
 	PRECACHE_SOUND("weapons/cbar_hitbod3.wav");
 	PRECACHE_SOUND("weapons/cbar_miss1.wav");
+	PRECACHE_SOUND("taunts/taunt1.wav");
+	PRECACHE_SOUND("taunts/taunt2.wav");
+	PRECACHE_SOUND("taunts/taunt3.wav");
+	PRECACHE_SOUND("taunts/taunt4.wav");
 
 	m_usCrowbar = PRECACHE_EVENT(1, "events/crowbar.sc");
 }
@@ -136,6 +140,26 @@ void CCrowbar::PrimaryAttack()
 	}
 }
 
+void CCrowbar::SecondaryAttack()
+{
+	SendWeaponAnim(CROWBAR_TAUNT);
+	switch (RANDOM_LONG(0, 3))
+	{
+	case 0:
+		EMIT_SOUND(ENT(m_pPlayer->pev), CHAN_ITEM, "taunts/taunt1.wav", 1, ATTN_NORM);
+		break;
+	case 1:
+		EMIT_SOUND(ENT(m_pPlayer->pev), CHAN_ITEM, "taunts/taunt2.wav", 1, ATTN_NORM);
+		break;
+	case 2:
+		EMIT_SOUND(ENT(m_pPlayer->pev), CHAN_ITEM, "taunts/taunt3.wav", 1, ATTN_NORM);
+		break;
+	case 3:
+		EMIT_SOUND(ENT(m_pPlayer->pev), CHAN_ITEM, "taunts/taunt4.wav", 1, ATTN_NORM);
+		break;
+	};
+	m_flNextSecondaryAttack = UTIL_WeaponTimeBase() + 2.5;
+}
 
 void CCrowbar::Smack()
 {
@@ -221,17 +245,7 @@ bool CCrowbar::Swing(bool fFirst)
 		CBaseEntity* pEntity = CBaseEntity::Instance(tr.pHit);
 
 		ClearMultiDamage();
-
-		if ((m_flNextPrimaryAttack + 1 < UTIL_WeaponTimeBase()) || g_pGameRules->IsMultiplayer())
-		{
-			// first swing does full damage
-			pEntity->TraceAttack(m_pPlayer->pev, gSkillData.plrDmgCrowbar, gpGlobals->v_forward, &tr, DMG_CLUB);
-		}
-		else
-		{
-			// subsequent swings do half
-			pEntity->TraceAttack(m_pPlayer->pev, gSkillData.plrDmgCrowbar / 2, gpGlobals->v_forward, &tr, DMG_CLUB);
-		}
+		pEntity->TraceAttack(m_pPlayer->pev, gSkillData.plrDmgCrowbar / 2, gpGlobals->v_forward, &tr, DMG_CLUB);
 		ApplyMultiDamage(m_pPlayer->pev, m_pPlayer->pev);
 
 #endif

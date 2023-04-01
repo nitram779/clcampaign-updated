@@ -2256,6 +2256,44 @@
 	]
 ]
 @PointClass base(Monster, Sequence) size(-16 -16 0, 16 16 72) studio("models/zombie.mdl") = monster_zombie : "Scientist Zombie" []
+
+// Crack-Life Monsters
+@PointClass base(Monster, Sequence) size(-16 -16 0, 16 16 72) studio("models/skellington.mdl") = monster_skeleton : "Skeleton" []
+@PointClass base(Monster, Sequence) size(-16 -16 0, 16 16 72) studio("models/superchav.mdl") = monster_superchav : "SuperChav" []
+@PointClass base(Monster, Sequence) size(-16 -16 0, 16 16 72) studio("models/skrillex.mdl") = monster_skrillex : "Skrillex" 
+[
+	netname(string) : "Squad Name"
+	spawnflags(Flags) =
+	[
+		32 : "SquadLeader" : 0
+		64 : "IgnorePlayer" : 0
+	]
+]
+@PointClass base(Monster, Sequence) size(-16 -16 0, 16 16 72) studio("models/megachav.mdl") = monster_megachav : "MegaChav" []
+@PointClass base(Monster, Sequence) size(-16 -16 0, 16 16 72) studio("models/pink_panther.mdl") = monster_pink_panther : "Pink Panther" []
+@PointClass base(Monster) size(-16 -16 0, 16 16 72) studio("models/bigsmoke.mdl") sequence(2) = monster_big_smoke : "Big Smoke" 
+[
+	spawnflags(Flags) =
+	[
+		32 : "SquadLeader" : 0
+	]
+	netname(string) : "Squad Name"
+	weapons(Choices) : "Weapons" : 1 =
+	[
+		1 : "9mmAR"
+		3 : "9mmAR + HG"
+		5 : "9mmAR + GL"
+		8 : "Shotgun"
+		10 : "Shotgun + HG"
+	]
+]
+@PointClass base(Monster, Sequence) size(-16 -16 0, 16 16 72) studio("models/bonewheel.mdl") = monster_bonewheel : "Bonewheel" []
+@PointClass base(Monster, Sequence) size(-16 -16 0, 16 16 72) studio("models/mariozombie.mdl") = monster_mariozombie : "Mario Zombie" []
+@PointClass base(Monster, Sequence) size(-32 -32 0, 32 32 64) studio("models/shrek.mdl") = monster_shrek : "Shrek" []
+@PointClass base(Monster, Sequence) size(-16 -16 0, 16 16 72) studio("models/zombozo.mdl") = monster_zombozo : "Zombozo" []
+@PointClass base(Monster, Sequence) size(-16 -16 0, 16 16 72) studio("models/terror.mdl") sequence(13) = monster_terror : "Terror" []
+@PointClass base(Monster, Sequence) size(-16 -16 0, 16 16 72) studio("models/evilsci.mdl") sequence(11) = monster_evilsci : "Evil Scientist" []
+
 @PointClass base(Targetname, Angles) size(-16 -16 -16, 16 16 16) = monstermaker : "Monster Maker"
 [
 	target(string) : "Target On Release" 
@@ -2684,6 +2722,16 @@
 @PointClass base(Weapon, Targetx) studio("models/w_squeak.mdl") = weapon_snark : "Squeak Grenade" []
 @PointClass base(Weapon, Targetx) studio("models/w_hgun.mdl") = weapon_hornetgun : "Hornet Gun" []
 @PointClass size(-16 -16 0, 16 16 64) color(0 128 0) studio("models/w_chainammo.mdl") =  weaponbox : "Weapon/Ammo Container" []
+
+// Crack-Life Weapons
+@PointClass base(Weapon, Targetx) studio("models/w_katana.mdl") = weapon_katana : "Katana" []
+@PointClass base(Weapon, Targetx) studio("models/w_hammer.mdl") = weapon_hammer : "Hammer" []
+@PointClass base(Weapon, Targetx) studio("models/w_needle.mdl") = weapon_needle : "Needle" []
+@PointClass base(Weapon, Targetx) studio("models/w_sawnoff.mdl") = weapon_sawnoff : "Sawnoff" []
+@PointClass base(Weapon, Targetx) studio("models/w_sniper.mdl") = weapon_snipars : "Snipars" []
+@PointClass base(Weapon, Targetx) studio("models/w_357ammobox.mdl") = ammo_snipars : "Snipars Ammo" []
+@PointClass base(Weapon, Targetx) studio("models/w_rock.mdl") = weapon_rock : "Rock" []
+@PointClass base(Weapon, Targetx) studio("models/w_pepsigun.mdl") = weapon_pepsigun : "Pepsi Gun" []
 
 @PointClass base(Weapon, Targetx) = world_items : "World Items" 
 [

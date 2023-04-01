@@ -135,7 +135,7 @@ void CRpgRocket::Spawn()
 	pev->velocity = gpGlobals->v_forward * 250;
 	pev->gravity = 0.5;
 
-	pev->nextthink = gpGlobals->time + 0.4;
+	pev->nextthink = gpGlobals->time + 0.01;
 
 	pev->dmg = gSkillData.plrDmgRPG;
 }
@@ -289,7 +289,7 @@ void CRpg::Reload()
 	// Set the next attack time into the future so that WeaponIdle will get called more often
 	// than reload, allowing the RPG LTD to be updated
 
-	m_flNextPrimaryAttack = GetNextAttackDelay(0.5);
+	m_flNextPrimaryAttack = GetNextAttackDelay(0.7);
 
 	if (0 != m_cActiveRockets && m_fSpotActive)
 	{
@@ -402,7 +402,7 @@ void CRpg::Holster()
 {
 	m_fInReload = false; // cancel any reload in progress.
 
-	m_pPlayer->m_flNextAttack = UTIL_WeaponTimeBase() + 0.5;
+	m_pPlayer->m_flNextAttack = UTIL_WeaponTimeBase() + 0.65;
 
 	SendWeaponAnim(RPG_HOLSTER1);
 
@@ -419,8 +419,9 @@ void CRpg::Holster()
 
 void CRpg::PrimaryAttack()
 {
-	if (0 != m_iClip)
+	if (m_pPlayer->m_rgAmmo[m_iPrimaryAmmoType] >= 1)
 	{
+		static int gun = 0;
 		m_pPlayer->m_iWeaponVolume = LOUD_GUN_VOLUME;
 		m_pPlayer->m_iWeaponFlash = BRIGHT_GUN_FLASH;
 
@@ -429,7 +430,11 @@ void CRpg::PrimaryAttack()
 		m_pPlayer->SetAnimation(PLAYER_ATTACK1);
 
 		UTIL_MakeVectors(m_pPlayer->pev->v_angle);
-		Vector vecSrc = m_pPlayer->GetGunPosition() + gpGlobals->v_forward * 16 + gpGlobals->v_right * 8 + gpGlobals->v_up * -8;
+		Vector vecSrc;
+		if (gun)
+			vecSrc = m_pPlayer->GetGunPosition() + gpGlobals->v_forward * 16 + gpGlobals->v_right * 8 + gpGlobals->v_up * -8;
+		else
+			vecSrc = m_pPlayer->GetGunPosition() + gpGlobals->v_forward * 16 + gpGlobals->v_right * -8 + gpGlobals->v_up * -8;
 
 		CRpgRocket* pRocket = CRpgRocket::CreateRpgRocket(vecSrc, m_pPlayer->pev->v_angle, m_pPlayer, this);
 
@@ -447,12 +452,16 @@ void CRpg::PrimaryAttack()
 		flags = 0;
 #endif
 
-		PLAYBACK_EVENT(flags, m_pPlayer->edict(), m_usRpg);
+		//PLAYBACK_EVENT(flags, m_pPlayer->edict(), m_usRpg);
+		EMIT_SOUND_DYN(edict(), CHAN_WEAPON, "weapons/rocketfire1.wav", 0.9, ATTN_NORM, 0, PITCH_NORM);
+		EMIT_SOUND_DYN(edict(), CHAN_ITEM, "weapons/glauncher.wav", 0.7, ATTN_NORM, 0, PITCH_NORM);
+		SendWeaponAnim(RPG_FIRE2 + 1 - gun);
+		m_pPlayer->m_rgAmmo[m_iPrimaryAmmoType]--;
 
-		m_iClip--;
 
-		m_flNextPrimaryAttack = GetNextAttackDelay(1.5);
-		m_flTimeWeaponIdle = UTIL_WeaponTimeBase() + 1.5;
+		m_flNextPrimaryAttack = GetNextAttackDelay(0.45);
+		m_flTimeWeaponIdle = UTIL_WeaponTimeBase() + 0.45;
+		gun = !gun;
 	}
 	else
 	{
