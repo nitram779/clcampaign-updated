@@ -32,8 +32,10 @@ HLDLL_OBJS = \
 	$(HLDLL_OBJ_DIR)/barnacle.o \
 	$(HLDLL_OBJ_DIR)/barney.o \
 	$(HLDLL_OBJ_DIR)/bigmomma.o \
+	$(HLDLL_OBJ_DIR)/bigsmoke.o \
 	$(HLDLL_OBJ_DIR)/bloater.o \
 	$(HLDLL_OBJ_DIR)/bmodels.o \
+	$(HLDLL_OBJ_DIR)/bonewheel.o \
 	$(HLDLL_OBJ_DIR)/bullsquid.o \
 	$(HLDLL_OBJ_DIR)/buttons.o \
 	$(HLDLL_OBJ_DIR)/cbase.o \
@@ -46,6 +48,7 @@ HLDLL_OBJS = \
 	$(HLDLL_OBJ_DIR)/doors.o \
 	$(HLDLL_OBJ_DIR)/effects.o \
 	$(HLDLL_OBJ_DIR)/egon.o \
+	$(HLDLL_OBJ_DIR)/evilsci.o \
 	$(HLDLL_OBJ_DIR)/explode.o \
 	$(HLDLL_OBJ_DIR)/flyingmonster.o \
 	$(HLDLL_OBJ_DIR)/func_break.o \
@@ -63,6 +66,7 @@ HLDLL_OBJS = \
 	$(HLDLL_OBJ_DIR)/h_cine.o \
 	$(HLDLL_OBJ_DIR)/h_cycler.o \
 	$(HLDLL_OBJ_DIR)/h_export.o \
+	$(HLDLL_OBJ_DIR)/hammer.o \
 	$(HLDLL_OBJ_DIR)/handgrenade.o \
 	$(HLDLL_OBJ_DIR)/hassassin.o \
 	$(HLDLL_OBJ_DIR)/headcrab.o \
@@ -74,44 +78,58 @@ HLDLL_OBJS = \
 	$(HLDLL_OBJ_DIR)/ichthyosaur.o \
 	$(HLDLL_OBJ_DIR)/islave.o \
 	$(HLDLL_OBJ_DIR)/items.o \
+	$(HLDLL_OBJ_DIR)/katana.o \
 	$(HLDLL_OBJ_DIR)/leech.o \
 	$(HLDLL_OBJ_DIR)/lights.o \
 	$(HLDLL_OBJ_DIR)/maprules.o \
+	$(HLDLL_OBJ_DIR)/mariozombie.o \
+	$(HLDLL_OBJ_DIR)/megachav.o \
 	$(HLDLL_OBJ_DIR)/monstermaker.o \
 	$(HLDLL_OBJ_DIR)/monsters.o \
 	$(HLDLL_OBJ_DIR)/monsterstate.o \
 	$(HLDLL_OBJ_DIR)/mortar.o \
 	$(HLDLL_OBJ_DIR)/mp5.o \
+	$(HLDLL_OBJ_DIR)/needle.o \
 	$(HLDLL_OBJ_DIR)/nihilanth.o \
 	$(HLDLL_OBJ_DIR)/nodes.o \
 	$(HLDLL_OBJ_DIR)/observer.o \
 	$(HLDLL_OBJ_DIR)/osprey.o \
 	$(HLDLL_OBJ_DIR)/pathcorner.o \
+	$(HLDLL_OBJ_DIR)/pepsigun.o \
+	$(HLDLL_OBJ_DIR)/pink_panther.o \
 	$(HLDLL_OBJ_DIR)/plane.o \
 	$(HLDLL_OBJ_DIR)/plats.o \
 	$(HLDLL_OBJ_DIR)/player.o \
 	$(HLDLL_OBJ_DIR)/python.o \
 	$(HLDLL_OBJ_DIR)/rat.o \
 	$(HLDLL_OBJ_DIR)/roach.o \
+	$(HLDLL_OBJ_DIR)/rock.o \
 	$(HLDLL_OBJ_DIR)/rpg.o \
 	$(HLDLL_OBJ_DIR)/satchel.o \
+	$(HLDLL_OBJ_DIR)/sawnoff.o \
 	$(HLDLL_OBJ_DIR)/schedule.o \
 	$(HLDLL_OBJ_DIR)/scientist.o \
 	$(HLDLL_OBJ_DIR)/scripted.o \
 	$(HLDLL_OBJ_DIR)/shotgun.o \
+	$(HLDLL_OBJ_DIR)/shrek.o \
+	$(HLDLL_OBJ_DIR)/skeleton.o \
 	$(HLDLL_OBJ_DIR)/skill.o \
+	$(HLDLL_OBJ_DIR)/skrillex.o \
+	$(HLDLL_OBJ_DIR)/snipars.o \
 	$(HLDLL_OBJ_DIR)/sound.o \
 	$(HLDLL_OBJ_DIR)/soundent.o \
 	$(HLDLL_OBJ_DIR)/spectator.o \
 	$(HLDLL_OBJ_DIR)/squadmonster.o \
 	$(HLDLL_OBJ_DIR)/squeakgrenade.o \
 	$(HLDLL_OBJ_DIR)/subs.o \
+	$(HLDLL_OBJ_DIR)/superchav.o \
 	$(HLDLL_OBJ_DIR)/talkmonster.o \
 	$(HLDLL_OBJ_DIR)/teamplay_gamerules.o \
 	$(HLDLL_OBJ_DIR)/multiplay_gamerules.o \
 	$(HLDLL_OBJ_DIR)/singleplay_gamerules.o \
 	$(HLDLL_OBJ_DIR)/tempmonster.o \
 	$(HLDLL_OBJ_DIR)/tentacle.o \
+	$(HLDLL_OBJ_DIR)/terror.o \
 	$(HLDLL_OBJ_DIR)/triggers.o \
 	$(HLDLL_OBJ_DIR)/tripmine.o \
 	$(HLDLL_OBJ_DIR)/turret.o \
@@ -121,7 +139,8 @@ HLDLL_OBJS = \
 	$(HLDLL_OBJ_DIR)/weapons_shared.o \
 	$(HLDLL_OBJ_DIR)/world.o \
 	$(HLDLL_OBJ_DIR)/xen.o \
-	$(HLDLL_OBJ_DIR)/zombie.o
+	$(HLDLL_OBJ_DIR)/zombie.o \
+	$(HLDLL_OBJ_DIR)/zombozo.o
 
 PM_OBJS = \
 	$(PM_OBJ_DIR)/pm_shared.o \
