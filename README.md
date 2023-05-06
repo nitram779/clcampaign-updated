@@ -26,6 +26,7 @@ Requirements to run mods built with this SDK
 ======================
 
 Only the latest Steam version of Half-Life is supported.
+
 Only the latest testing builds of Xash3D FWGS New Engine is supported. (With some bugs like crowbar/katana/hammer swinging twice.)
 
 Building this SDK
@@ -42,6 +43,7 @@ What isn't supported
 ======================
 
 Backwards compatibility with WON and older versions of Steam Half-Life is not supported.
+
 Original Uncle Mike's Xash3D and Xash3D FWGS Old Engine isn't supported.
 
 These repositories have a limited scope and will not have major changes applied.
