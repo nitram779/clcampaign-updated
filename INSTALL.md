@@ -15,10 +15,10 @@ You will need to install the Visual Studio 2019 re-distributable. You can find i
 
 2. Restart Steam so the game is added to the list of games.
 
-3. Download the latest binaries from [GitHub Actions](https://github.com/nitram779/clcampaign-updated/actions). (Github Account is required to download!)
+3. Download the latest binaries from [GitHub Actions](https://github.com/nitram779/clcampaign-updated/actions?query=branch%3Amaster). (Github Account is required to download!)
 
 4. Extract the archive to your mod directory. It should place a directory called `clcampaign` in the `Half-Life` directory.
 
 ## Running the game
 
-You can run the game by either running it through Steam or by launching Half-Life with the command-line parameter `-game mod_name`.
+You can run the game by either running it through Steam or by launching Half-Life with the command-line parameter `-game clcampaign`.
