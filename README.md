@@ -1,7 +1,7 @@
 About
 ======================
 
-New reimplementation of [Crack-Life: Campaign Mode](https://www.moddb.com/mods/crack-life/downloads/crack-life-campaign-mode) code based on [SamVanheer's Half-Life Updated](https://github.com/SamVanheer/halflife-updated) and [LostGamerHL's reimplementation](https://github.com/LostGamerHL/crack_life) with improvements.
+New reimplementation of [Crack-Life: Campaign Mode](https://www.moddb.com/mods/crack-life/downloads/crack-life-campaign-mode) code based on [SamVanheer's Half-Life Updated](https://github.com/SamVanheer/halflife-updated) and [LostGamerHL's reimplementation](https://github.com/LostGamerHL/crack_life).
 
 Purpose
 ======================
@@ -27,7 +27,7 @@ Requirements to run mods built with this SDK
 
 Only the latest Steam version of Half-Life is supported.
 
-Only the latest testing builds of Xash3D FWGS New Engine is supported. (With some bugs like crowbar/katana/hammer swinging twice.)
+Only the latest [testing builds of Xash3D FWGS](https://github.com/FWGS/xash3d-fwgs) is supported. (With some bugs like [crowbar/katana/hammer swinging twice.](https://github.com/FWGS/xash3d-fwgs/issues/1150))
 
 Building this SDK
 ======================
@@ -51,7 +51,9 @@ These repositories have a limited scope and will not have major changes applied.
 Changelog
 ======================
 
-See [CHANGELOG.md](CHANGELOG.md) and [FULL_CHANGELOG.md](FULL_CHANGELOG.md)
+See [CHANGELOG_CLCM.md](CHANGELOG_CLCM.md)
+
+For Half-Life updated changelog, see [CHANGELOG.md](CHANGELOG.md) and [FULL_CHANGELOG.md](FULL_CHANGELOG.md)
 
 Half Life 1 SDK LICENSE
 ======================
