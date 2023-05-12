@@ -227,7 +227,7 @@ void CMegachav::Spawn()
 	Precache();
 
 	SET_MODEL(ENT(pev), "models/megachav.mdl");
-	UTIL_SetSize(pev, VEC_HUMAN_HULL_MIN, VEC_HUMAN_HULL_MAX);
+	UTIL_SetSize(pev, Vector(-35, -30, 0), Vector(35, 30, 126));
 
 	pev->solid = SOLID_SLIDEBOX;
 	pev->movetype = MOVETYPE_STEP;
