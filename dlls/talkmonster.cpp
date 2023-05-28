@@ -867,8 +867,12 @@ void CTalkMonster::Touch(CBaseEntity* pOther)
 		float speed = fabs(pOther->pev->velocity.x) + fabs(pOther->pev->velocity.y);
 		if (speed > 50)
 		{
-			SetConditions(bits_COND_CLIENT_PUSH);
-			MakeIdealYaw(pOther->pev->origin);
+			// From https://github.com/FreeSlave/halflife-updated/wiki/Fix-potential-incorrect-facing-in-scripted-sequence
+			if (m_pSchedule != NULL && (m_pSchedule->iInterruptMask & bits_COND_CLIENT_PUSH) != 0)
+			{
+				SetConditions(bits_COND_CLIENT_PUSH);
+				MakeIdealYaw(pOther->pev->origin);
+			}
 		}
 	}
 }
@@ -1375,7 +1379,7 @@ void CTalkMonster::StartFollowing(CBaseEntity* pLeader)
 
 bool CTalkMonster::CanFollow()
 {
-	if (m_MonsterState == MONSTERSTATE_SCRIPT)
+	if (m_MonsterState == MONSTERSTATE_SCRIPT || m_IdealMonsterState == MONSTERSTATE_SCRIPT)
 	{
 		if (!m_pCine->CanInterrupt())
 			return false;
