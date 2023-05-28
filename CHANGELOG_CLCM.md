@@ -10,7 +10,7 @@
 * Fixed Human Grunt idle sounds.
 * Fixed `"debris/metal*.wav not precached"` spam in `lvl7b` map.
 * Fixed MegaChav and Shrek hull size.
-* Terror's "scream" sound now stops when dies.
+* Terror's alert sound now stop when dies.
 * Added missing Alien Grunt sounds.
 * Added missing Katata swinging sounds.
 
@@ -18,9 +18,11 @@
 * Implemented missing skill cvars for NPCs and weapons.
 * Player Taunt sounds are now plays trough `EMIT_SOUND` instead of `SENTENCEG_PlayRndSz`.
 * `impulse 101` now gives all weapons.
+* View roll is disabled by default.
 
 ### Project changes
 * Added skill.cfg
+* Added Crack-Life entities to `fgd/halflife.fgd`
 
 ### Code cleanup
 * Added `crowbar.h` header for make it easier to use of `FindHullIntersection` instead of copy/pasting code.

@@ -27,7 +27,7 @@ Requirements to run mods built with this SDK
 
 Only the latest Steam version of Half-Life is supported.
 
-Only the latest [testing builds of Xash3D FWGS](https://github.com/FWGS/xash3d-fwgs) is supported. (With some bugs like [crowbar/katana/hammer swinging twice.](https://github.com/FWGS/xash3d-fwgs/issues/1150))
+Only the latest [testing builds of Xash3D FWGS](https://github.com/FWGS/xash3d-fwgs/releases/tag/continuous) is supported. (With some bugs like [crowbar/katana/hammer swinging twice.](https://github.com/FWGS/xash3d-fwgs/issues/1150))
 
 Building this SDK
 ======================
