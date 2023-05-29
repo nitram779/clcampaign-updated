@@ -16,12 +16,13 @@
 
 ### New features
 * Implemented missing skill cvars for NPCs and weapons.
-* Player Taunt sounds are now plays trough `EMIT_SOUND` instead of `SENTENCEG_PlayRndSz`.
+* Player Taunt animations and sounds moved to client-side.
 * `impulse 101` now gives all weapons.
 * View roll is disabled by default.
 
 ### Project changes
-* Added skill.cfg
+* Added `game_dir`
+* Added `skill.cfg`
 * Added Crack-Life entities to `fgd/halflife.fgd`
 
 ### Code cleanup
