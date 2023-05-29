@@ -15,7 +15,7 @@ You will need to install the Visual Studio 2019 re-distributable. You can find i
 
 2. Restart Steam so the game is added to the list of games.
 
-3. Download the latest binaries from [GitHub Actions](https://github.com/nitram779/clcampaign-updated/actions?query=branch%3Amaster). (Github Account is required to download!)
+2. Download the latest version from the [Releases page](https://github.com/nitram779/clcampaign-updated/releases).
 
 4. Extract the archive to your mod directory. It should place a directory called `clcampaign` in the `Half-Life` directory.
 
