@@ -1121,6 +1121,36 @@ void EV_Crowbar(event_args_t* args)
 		}
 	}
 }
+
+void EV_CrowbarTaunt(event_args_t* args)
+{
+	int idx;
+	Vector origin;
+
+	idx = args->entindex;
+	VectorCopy(args->origin, origin);
+
+	switch (gEngfuncs.pfnRandomLong(0, 3))
+	{
+	case 0:
+		gEngfuncs.pEventAPI->EV_PlaySound(idx, origin, CHAN_ITEM, "taunts/taunt1.wav", 1, ATTN_NORM, 0, PITCH_NORM);
+		break;
+	case 1:
+		gEngfuncs.pEventAPI->EV_PlaySound(idx, origin, CHAN_ITEM, "taunts/taunt2.wav", 1, ATTN_NORM, 0, PITCH_NORM);
+		break;
+	case 2:
+		gEngfuncs.pEventAPI->EV_PlaySound(idx, origin, CHAN_ITEM, "taunts/taunt3.wav", 1, ATTN_NORM, 0, PITCH_NORM);
+		break;
+	case 3:
+		gEngfuncs.pEventAPI->EV_PlaySound(idx, origin, CHAN_ITEM, "taunts/taunt4.wav", 1, ATTN_NORM, 0, PITCH_NORM);
+		break;
+	}
+
+	if (EV_IsLocal(idx))
+	{
+		gEngfuncs.pEventAPI->EV_WeaponAnimation(CROWBAR_TAUNT, 0);
+	}
+}
 //======================
 //	   CROWBAR END
 //======================
@@ -1258,6 +1288,8 @@ void EV_FireCrossbow(event_args_t* args)
 //======================
 //	    RPG START
 //======================
+int g_GunSwitch = 0;
+
 void EV_FireRpg(event_args_t* args)
 {
 	int idx;
@@ -1272,7 +1304,11 @@ void EV_FireRpg(event_args_t* args)
 	//Only play the weapon anims if I shot it.
 	if (EV_IsLocal(idx))
 	{
-		gEngfuncs.pEventAPI->EV_WeaponAnimation(RPG_FIRE2, 0);
+		if (g_GunSwitch)
+			gEngfuncs.pEventAPI->EV_WeaponAnimation(RPG_FIRE2, 0);
+		else
+			gEngfuncs.pEventAPI->EV_WeaponAnimation(RPG_FIRE1, 0);
+		g_GunSwitch = !g_GunSwitch;
 
 		V_PunchAxis(0, -5.0);
 	}
@@ -1636,6 +1672,28 @@ void EV_Hammer(event_args_t* args)
 }
 //======================
 //	   HAMMER END
+//======================
+
+//======================
+//	   NEEDLE START
+//======================
+void EV_Needle(event_args_t* args)
+{
+	int idx;
+	Vector origin;
+
+	idx = args->entindex;
+	VectorCopy(args->origin, origin);
+
+	gEngfuncs.pEventAPI->EV_PlaySound(idx, origin, CHAN_ITEM, "weapons/needleshot.wav", 1, ATTN_NORM, 0, PITCH_NORM);
+
+	if (EV_IsLocal(idx))
+	{
+		gEngfuncs.pEventAPI->EV_WeaponAnimation(NEEDLE_GIVESHOT, 0);
+	}
+}
+//======================
+//	   NEEDLE END
 //======================
 
 //======================

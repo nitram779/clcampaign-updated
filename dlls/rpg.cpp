@@ -421,7 +421,6 @@ void CRpg::PrimaryAttack()
 {
 	if (m_pPlayer->m_rgAmmo[m_iPrimaryAmmoType] >= 1)
 	{
-		static int gun = 0;
 		m_pPlayer->m_iWeaponVolume = LOUD_GUN_VOLUME;
 		m_pPlayer->m_iWeaponFlash = BRIGHT_GUN_FLASH;
 
@@ -430,11 +429,7 @@ void CRpg::PrimaryAttack()
 		m_pPlayer->SetAnimation(PLAYER_ATTACK1);
 
 		UTIL_MakeVectors(m_pPlayer->pev->v_angle);
-		Vector vecSrc;
-		if (gun)
-			vecSrc = m_pPlayer->GetGunPosition() + gpGlobals->v_forward * 16 + gpGlobals->v_right * 8 + gpGlobals->v_up * -8;
-		else
-			vecSrc = m_pPlayer->GetGunPosition() + gpGlobals->v_forward * 16 + gpGlobals->v_right * -8 + gpGlobals->v_up * -8;
+		Vector vecSrc = m_pPlayer->GetGunPosition() + gpGlobals->v_forward * 16 + gpGlobals->v_right * 8 + gpGlobals->v_up * -8;
 
 		CRpgRocket* pRocket = CRpgRocket::CreateRpgRocket(vecSrc, m_pPlayer->pev->v_angle, m_pPlayer, this);
 
@@ -452,16 +447,11 @@ void CRpg::PrimaryAttack()
 		flags = 0;
 #endif
 
-		//PLAYBACK_EVENT(flags, m_pPlayer->edict(), m_usRpg);
-		EMIT_SOUND_DYN(edict(), CHAN_WEAPON, "weapons/rocketfire1.wav", 0.9, ATTN_NORM, 0, PITCH_NORM);
-		EMIT_SOUND_DYN(edict(), CHAN_ITEM, "weapons/glauncher.wav", 0.7, ATTN_NORM, 0, PITCH_NORM);
-		SendWeaponAnim(RPG_FIRE2 + 1 - gun);
+		PLAYBACK_EVENT(flags, m_pPlayer->edict(), m_usRpg);
 		m_pPlayer->m_rgAmmo[m_iPrimaryAmmoType]--;
-
 
 		m_flNextPrimaryAttack = GetNextAttackDelay(0.45);
 		m_flTimeWeaponIdle = UTIL_WeaponTimeBase() + 0.45;
-		gun = !gun;
 	}
 	else
 	{

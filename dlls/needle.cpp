@@ -39,6 +39,8 @@ void CNeedle::Precache()
 	PRECACHE_MODEL("models/w_needle.mdl");
 	PRECACHE_MODEL("models/p_needle.mdl");
 	PRECACHE_SOUND("weapons/needleshot.wav");
+
+	m_usNeedle = PRECACHE_EVENT(1, "events/needle.sc");
 }
 
 bool CNeedle::GetItemInfo(ItemInfo* p)
@@ -66,8 +68,13 @@ bool CNeedle::Deploy()
 
 void CNeedle::PrimaryAttack()
 {
-	SendWeaponAnim(NEEDLE_GIVESHOT);
-	EMIT_SOUND(ENT(m_pPlayer->pev), CHAN_ITEM, "weapons/needleshot.wav", 1, ATTN_NORM);
+	int flags;
+#if defined(CLIENT_WEAPONS)
+	flags = FEV_NOTHOST;
+#else
+	flags = 0;
+#endif
+	PLAYBACK_EVENT(flags, m_pPlayer->edict(), m_usNeedle);
 	m_pPlayer->TakeHealth(25, DMG_GENERIC);
 	m_flNextPrimaryAttack = GetNextAttackDelay(60.0);
 	m_flTimeWeaponIdle = UTIL_WeaponTimeBase() + 19.0 / 5.0;

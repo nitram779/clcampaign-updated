@@ -606,6 +606,7 @@ public:
 
 private:
 	unsigned short m_usCrowbar;
+	unsigned short m_usCrowbarTaunt;
 };
 
 enum python_e
@@ -1371,6 +1372,9 @@ public:
 		return false;
 #endif
 	}
+
+private:
+	unsigned short m_usNeedle;
 };
 
 enum sawnoff_e

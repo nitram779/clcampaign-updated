@@ -55,6 +55,7 @@ void CCrowbar::Precache()
 	PRECACHE_SOUND("taunts/taunt4.wav");
 
 	m_usCrowbar = PRECACHE_EVENT(1, "events/crowbar.sc");
+	m_usCrowbarTaunt = PRECACHE_EVENT(1, "events/crowbar_taunt.sc");
 }
 
 bool CCrowbar::GetItemInfo(ItemInfo* p)
@@ -142,22 +143,7 @@ void CCrowbar::PrimaryAttack()
 
 void CCrowbar::SecondaryAttack()
 {
-	SendWeaponAnim(CROWBAR_TAUNT);
-	switch (RANDOM_LONG(0, 3))
-	{
-	case 0:
-		EMIT_SOUND(ENT(m_pPlayer->pev), CHAN_ITEM, "taunts/taunt1.wav", 1, ATTN_NORM);
-		break;
-	case 1:
-		EMIT_SOUND(ENT(m_pPlayer->pev), CHAN_ITEM, "taunts/taunt2.wav", 1, ATTN_NORM);
-		break;
-	case 2:
-		EMIT_SOUND(ENT(m_pPlayer->pev), CHAN_ITEM, "taunts/taunt3.wav", 1, ATTN_NORM);
-		break;
-	case 3:
-		EMIT_SOUND(ENT(m_pPlayer->pev), CHAN_ITEM, "taunts/taunt4.wav", 1, ATTN_NORM);
-		break;
-	};
+	PLAYBACK_EVENT(FEV_NOTHOST, m_pPlayer->edict(), m_usCrowbarTaunt);
 	m_flNextSecondaryAttack = UTIL_WeaponTimeBase() + 2.5;
 }
 
