@@ -1,0 +1,11 @@
+// Valve Game Info file
+//  These are key/value pairs.  Certain mods will use different settings.
+//
+game "Crack-Life: Campaign Mode Updated"
+startmap "lvl1"
+trainmap "tr1"
+mpentity "info_player_deathmatch"
+gamedll "dlls\hl.dll"
+gamedll_linux "dlls/hl.so"
+secure "1"
+edicts "2048"
