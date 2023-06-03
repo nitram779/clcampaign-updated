@@ -1133,16 +1133,16 @@ void EV_CrowbarTaunt(event_args_t* args)
 	switch (gEngfuncs.pfnRandomLong(0, 3))
 	{
 	case 0:
-		gEngfuncs.pEventAPI->EV_PlaySound(idx, origin, CHAN_ITEM, "taunts/taunt1.wav", 1, ATTN_NORM, 0, PITCH_NORM);
+		gEngfuncs.pEventAPI->EV_PlaySound(idx, origin, CHAN_VOICE, "taunts/taunt1.wav", 1, ATTN_NORM, 0, PITCH_NORM);
 		break;
 	case 1:
-		gEngfuncs.pEventAPI->EV_PlaySound(idx, origin, CHAN_ITEM, "taunts/taunt2.wav", 1, ATTN_NORM, 0, PITCH_NORM);
+		gEngfuncs.pEventAPI->EV_PlaySound(idx, origin, CHAN_VOICE, "taunts/taunt2.wav", 1, ATTN_NORM, 0, PITCH_NORM);
 		break;
 	case 2:
-		gEngfuncs.pEventAPI->EV_PlaySound(idx, origin, CHAN_ITEM, "taunts/taunt3.wav", 1, ATTN_NORM, 0, PITCH_NORM);
+		gEngfuncs.pEventAPI->EV_PlaySound(idx, origin, CHAN_VOICE, "taunts/taunt3.wav", 1, ATTN_NORM, 0, PITCH_NORM);
 		break;
 	case 3:
-		gEngfuncs.pEventAPI->EV_PlaySound(idx, origin, CHAN_ITEM, "taunts/taunt4.wav", 1, ATTN_NORM, 0, PITCH_NORM);
+		gEngfuncs.pEventAPI->EV_PlaySound(idx, origin, CHAN_VOICE, "taunts/taunt4.wav", 1, ATTN_NORM, 0, PITCH_NORM);
 		break;
 	}
 
