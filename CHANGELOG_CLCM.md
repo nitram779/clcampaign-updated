@@ -14,7 +14,7 @@
 * Added missing Alien Grunt sounds.
 * Added missing Katata swinging sounds.
 * Missing skill cvars for NPCs and weapons have been added.
-* Crowbar/Fist taunt animations and sounds now moved to client side.
+* Crowbar/Fist taunt animation and sounds now moved to client side.
 * `impulse 101` now gives all weapons.
 * Removed useless anim events and skill cvars for most of Zombie-based NPCs (e.g Chavs).
 
