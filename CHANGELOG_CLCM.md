@@ -4,27 +4,26 @@
 
 > Note: this version has not been released yet.
 
-### Bug fixes
-* Fixed animations code for many weapons.
-* Fixed Death sound not playing until quick save/load or level change.
+### Changes from the original mod
+* Fixed animation code for many weapons.
+* Fixed death sound not playing before quick save/load or level change.
 * Fixed Human Grunt idle sounds.
-* Fixed `"debris/metal*.wav not precached"` spam in `lvl7b` map.
+* Fixed `"debris/metal*.wav not precached"` console spam on the `lvl7b` map.
 * Fixed MegaChav and Shrek hull size.
-* Terror's alert sound now stop when dies.
+* Terror's alert sound will now stop when he dies.
 * Added missing Alien Grunt sounds.
 * Added missing Katata swinging sounds.
-
-### New features
-* Implemented missing skill cvars for NPCs and weapons.
-* Player Taunt animations and sounds moved to client-side.
+* Missing skill cvars for NPCs and weapons have been added.
+* Player taunt animations and sounds now moved to client side.
 * `impulse 101` now gives all weapons.
-* View roll is disabled by default.
+* Added `crowbar.h` header to make it easier to use `FindHullIntersection` instead of copy/pasting code.
+* Removed useless anim events and skill cvars for most of Zombie-based NPCs (e.g Chavs).
 
-### Project changes
+### Changes from the original Half-Life Updated repo
+* View Roll is disabled by default.
 * Added `game_dir`
 * Added `skill.cfg`
 * Added Crack-Life entities to `fgd/halflife.fgd`
 
-### Code cleanup
-* Added `crowbar.h` header for make it easier to use of `FindHullIntersection` instead of copy/pasting code.
-* Removed useless Anim events and skill cvars for most of Zombie based NPCs (e.g Chavs).
+### Changes from the LostGamerHL reimplementation
+WIP
