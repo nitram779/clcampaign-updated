@@ -92,7 +92,7 @@ void CKatana::PrimaryAttack()
 	if (!Swing(true))
 	{
 		SetThink(&CKatana::SwingAgain);
-		pev->nextthink = gpGlobals->time + 0.1;
+		pev->nextthink = gpGlobals->time + 0.6;
 	}
 }
 
