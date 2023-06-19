@@ -407,14 +407,14 @@ void CCrossbow::FireBolt()
 		// HEV suit - indicate out of ammo condition
 		m_pPlayer->SetSuitUpdate("!HEV_AMO0", false, 0);
 
-	m_flNextPrimaryAttack = GetNextAttackDelay(0.1);
+	m_flNextPrimaryAttack = GetNextAttackDelay(0.075);
 
-	m_flNextSecondaryAttack = UTIL_WeaponTimeBase() + 0.1;
+	m_flNextSecondaryAttack = UTIL_WeaponTimeBase() + 0.075;
 
 	if (m_iClip != 0)
 		m_flTimeWeaponIdle = UTIL_WeaponTimeBase() + 5.0;
 	else
-		m_flTimeWeaponIdle = UTIL_WeaponTimeBase() + 0.75;
+		m_flTimeWeaponIdle = UTIL_WeaponTimeBase() + 0.075;
 }
 
 
@@ -429,7 +429,7 @@ void CCrossbow::SecondaryAttack()
 		m_pPlayer->m_iFOV = 20;
 	}
 
-	pev->nextthink = UTIL_WeaponTimeBase() + 0.1;
+	pev->nextthink = UTIL_WeaponTimeBase() + 0.01;
 	m_flNextSecondaryAttack = UTIL_WeaponTimeBase() + 1.0;
 }
 

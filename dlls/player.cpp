@@ -250,31 +250,31 @@ void CBasePlayer::DeathSound()
 	switch (RANDOM_LONG(1, 9))
 	{
 	case 1:
-		ClientPrint(pev, HUD_PRINTCENTER, "YOU USELESS SHITSTAIN");
+		ClientPrint(pev, HUD_PRINTCENTER, "YOU DENSE FUCK");
 		break;
 	case 2:
-		ClientPrint(pev, HUD_PRINTCENTER, "GAME OVER MOTHERFUCKER! YOU SUCK!");
+		ClientPrint(pev, HUD_PRINTCENTER, "YOU FUCKING RETARD!");
 		break;
 	case 3:
-		ClientPrint(pev, HUD_PRINTCENTER, "HOW THE HELL ARE YOU SO BAD AT THIS GAME?");
+		ClientPrint(pev, HUD_PRINTCENTER, "HOLY FUCKING SHIT SERIOUSLY");
 		break;
 	case 4:
-		ClientPrint(pev, HUD_PRINTCENTER, "HOW DO YOU FUCK UP SO BADLY JESUS FUCKING CHRIST?");
+		ClientPrint(pev, HUD_PRINTCENTER, "OH MY GOD YOU SUCK! AUTO-UNINSTALLING");
 		break;
 	case 5:
 		ClientPrint(pev, HUD_PRINTCENTER, "YOU DIED! CONGRATS FUCKFACE");
 		break;
 	case 6:
-		ClientPrint(pev, HUD_PRINTCENTER, "OH MY GOD YOU SUCK! AUTO-UNINSTALLING");
+		ClientPrint(pev, HUD_PRINTCENTER, "HOW DO YOU FUCK UP SO BADLY JESUS FUCKING CHRIST?");
 		break;
 	case 7:
-		ClientPrint(pev, HUD_PRINTCENTER, "HOLY FUCKING SHIT SERIOUSLY");
+		ClientPrint(pev, HUD_PRINTCENTER, "HOW THE HELL ARE YOU SO BAD AT THIS GAME?");
 		break;
 	case 8:
-		ClientPrint(pev, HUD_PRINTCENTER, "YOU FUCKING RETARD!");
+		ClientPrint(pev, HUD_PRINTCENTER, "GAME OVER MOTHERFUCKER! YOU SUCK!");
 		break;
 	case 9:
-		ClientPrint(pev, HUD_PRINTCENTER, "YOU DENSE FUCK");
+		ClientPrint(pev, HUD_PRINTCENTER, "YOU USELESS SHITSTAIN");
 		break;
 	}
 
