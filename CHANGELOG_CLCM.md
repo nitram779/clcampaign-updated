@@ -5,7 +5,7 @@
 > Note: this version has not been released yet.
 
 ### Changes from the original mod
-* Fixed animation code for many weapons.
+* Fixed weapon animations.
 * Fixed death sound wouldn't play unless you did a quick save/load or level change.
 * Fixed Human Grunt idle sounds.
 * Fixed `"debris/metal*.wav not precached"` console spam on the `lvl7b` map.
@@ -18,7 +18,7 @@
 * `impulse 101` now gives all weapons.
 * Removed useless anim events and skill cvars for most of Zombie-based NPCs (e.g Chavs).
 
-### Changes from the original Half-Life Updated repo
+### Changes from the Half-Life Updated repo
 * Added `crowbar.h` header to make it easier to use `FindHullIntersection` instead of copy/pasting code.
 * View Roll is disabled by default.
 * Added `game_dir`
